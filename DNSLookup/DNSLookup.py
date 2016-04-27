@@ -10,7 +10,7 @@ myResolver.lifetime = .5
 #	print rdata #print the data
 
 # Open database connection
-db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
+db = MySQLdb.connect("localhost","pythonuser","Password2","dnslookup" )
 
 
 try:
