@@ -9,6 +9,7 @@ myResolver.lifetime = .5
 #for rdata in myAnswers: #for each response
 #	print rdata #print the data
 
+
 # Open database connection
 db = MySQLdb.connect("localhost","pythonuser","Password2","dnslookup" )
 
