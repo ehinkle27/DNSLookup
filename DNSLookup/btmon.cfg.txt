@@ -1,0 +1,10 @@
+[source]
+ip_read = true
+ip_host = 10.29.5.103
+ip_port = 1024
+ip_mode = client
+ip_poll_interval = 180
+[seg]
+smartenergygroups_out = true
+seg_token = 40b5c5dfc7ea908
+seg_upload_period=180
