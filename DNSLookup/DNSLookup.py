@@ -46,16 +46,24 @@ i = 1
 while i < 420:
    nowtd =datetime.now()
    nowstamp = nowtd.strftime('%Y-%m-%d %H:%M:%S')
-   myAnswers = myResolver.query(domain, "A") #Lookup the 'A' record(s) for google.com
-   for rdata in myAnswers: #for each response
-       print rdata.address #print the data
-   gmap['IPAddr'] = rdata.address
    gmap['First_Seen'] = nowstamp
    gmap['Last_Seen'] = nowstamp
+# Look up IP address from DNS name
+   try:
+       myAnswers = myResolver.query(domain, "A") #Lookup the 'A' record(s) for google.com
+       for rdata in myAnswers: #for each response
+           print rdata.address #print the data
+           gmap['IPAddr'] = rdata.address
+   except: #If any error set IP Address to below value and insert in database.
+           gmap['IPAddr'] = '0.0.0.0'
 
    if gmap['IPAddr'] == gmap['IP_seen']:
       print "IP Didn't change"
       #break
+   elif gmap['IPAddr'] == '0.0.0.0':
+      gmap['First_Seen'] = '2001-01-01 00:00:00'
+      gmap['Last_Seen'] = '2001-01-01 00:00:00'
+      print "Error"
    elif (gmap['IPAddr'] <> gmap['IP_seen'] and gmap['IP_seen'] == ""):
       print "IP address not seen and Seen is empty"
       print "IP Seen (should be blank): " + gmap['IP_seen']
